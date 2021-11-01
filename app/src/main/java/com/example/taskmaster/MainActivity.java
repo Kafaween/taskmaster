@@ -1,9 +1,12 @@
 package com.example.taskmaster;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,14 +21,56 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
         Button navToAllTasks = MainActivity.this.findViewById(R.id.buttonMain_allTask);
         navToAllTasks.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, AllTasks.class);
             startActivity(intent);
         });
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Button button1= findViewById(R.id.Task1);
+        findViewById(R.id.Task1).setOnClickListener(view -> {
+
+            String Task1 =button1.getText().toString();
+            editor.putString("TaskName",Task1);
+            editor.apply();
+            Intent gotToStd = new Intent(MainActivity.this,TaskDetailPage.class);
+            startActivity(gotToStd);
+        });
+        Button button2= findViewById(R.id.Task2);
+        findViewById(R.id.Task2).setOnClickListener(view -> {
+
+            String Task2 =button2.getText().toString();
+            editor.putString("TaskName",Task2);
+            editor.apply();
+            Intent gotToInst = new Intent(MainActivity.this,TaskDetailPage.class);
+            startActivity(gotToInst);
+        });
+        Button button3= findViewById(R.id.Task3);
+        findViewById(R.id.Task3).setOnClickListener(view -> {
+
+            String Task3 =button3.getText().toString();
+            editor.putString("TaskName",Task3);
+            editor.apply();
+            Intent gotToInst = new Intent(MainActivity.this,TaskDetailPage.class);
+            startActivity(gotToInst);
+        });
+
+        findViewById(R.id.Setting).setOnClickListener(view -> {
+            Intent gotToStd = new Intent(MainActivity.this,SettingsPage.class);
+            startActivity(gotToStd);
+        });
 
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String instName = sharedPreferences.getString("UserName","user");
+        System.out.println(instName);
+        TextView welcome = findViewById(R.id.user);
+        welcome.setText( instName+"’s Tasks");
+    }
 }

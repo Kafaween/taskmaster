@@ -10,4 +10,9 @@
     <string name="add_task_button">ADD TASK</string>
     <string name="all_tasks_button">ALL TASKS</string>
     <string name="all_tasks">All Tasks</string>
+    <string name="task1">Task1</string>
+    <string name="task2">Task2</string>
+    <string name="task3">Task3</string>
+    <string name="username">Username</string>
+    <string name="save_me">Save me</string>
 </resources>
