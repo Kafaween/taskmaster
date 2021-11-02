@@ -5,15 +5,32 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ArrayList<Task> tasks = new ArrayList<Task>();
+
+        tasks.add(new Task("Coding","think then code","new"));
+        tasks.add(new Task("playing","safety first","assigned"));
+        tasks.add(new Task("sleeping","sleep well","in progress"));
+        tasks.add(new Task("games","Dota forever","complete"));
+
+        RecyclerView allTasksRecyclerView = findViewById(R.id.recyclerview);
+        allTasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        allTasksRecyclerView.setAdapter(new TaskAdapter(tasks));
 
         Button navToAddTask = MainActivity.this.findViewById(R.id.buttonMain_addTask);
         navToAddTask.setOnClickListener(view -> {
