@@ -15,4 +15,7 @@
     <string name="task3">Task3</string>
     <string name="username">Username</string>
     <string name="save_me">Save me</string>
+    <string name="title">Title</string>
+    <string name="state">State</string>
+    <string name="body">Body</string>
 </resources>
