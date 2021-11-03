@@ -3,17 +3,23 @@ package com.example.taskmaster;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Dao;
+
 import java.util.ArrayList;
+import java.util.List;
+
+
 
 public class MainActivity extends AppCompatActivity {
-
 
 
     @Override
@@ -21,12 +27,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<Task> tasks = new ArrayList<Task>();
+        List<Task> tasks = new ArrayList<Task>();
+        tasks=AppDatabase.getInstance(this).studentDao().getAll();
 
-        tasks.add(new Task("Coding","think then code","new"));
-        tasks.add(new Task("playing","safety first","assigned"));
-        tasks.add(new Task("sleeping","sleep well","in progress"));
-        tasks.add(new Task("games","Dota forever","complete"));
 
         RecyclerView allTasksRecyclerView = findViewById(R.id.recyclerview);
         allTasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
