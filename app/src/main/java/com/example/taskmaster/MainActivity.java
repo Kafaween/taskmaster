@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -14,21 +15,34 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Dao;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Task;
 import java.util.ArrayList;
 import java.util.List;
 
 
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final String TAG = "MainActivity";
+    boolean configured=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(configured) {
+            configureAmplify();
+        }
+
+
+
+
         List<Task> tasks = new ArrayList<Task>();
-        tasks=AppDatabase.getInstance(this).studentDao().getAll();
+        tasks=GetData();
 
 
         RecyclerView allTasksRecyclerView = findViewById(R.id.recyclerview);
@@ -50,40 +64,17 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        Button button1= findViewById(R.id.Task1);
-        findViewById(R.id.Task1).setOnClickListener(view -> {
 
-            String Task1 =button1.getText().toString();
-            editor.putString("TaskName",Task1);
-            editor.apply();
-            Intent gotToStd = new Intent(MainActivity.this,TaskDetailPage.class);
-            startActivity(gotToStd);
-        });
-        Button button2= findViewById(R.id.Task2);
-        findViewById(R.id.Task2).setOnClickListener(view -> {
-
-            String Task2 =button2.getText().toString();
-            editor.putString("TaskName",Task2);
-            editor.apply();
-            Intent gotToInst = new Intent(MainActivity.this,TaskDetailPage.class);
-            startActivity(gotToInst);
-        });
-        Button button3= findViewById(R.id.Task3);
-        findViewById(R.id.Task3).setOnClickListener(view -> {
-
-            String Task3 =button3.getText().toString();
-            editor.putString("TaskName",Task3);
-            editor.apply();
-            Intent gotToInst = new Intent(MainActivity.this,TaskDetailPage.class);
-            startActivity(gotToInst);
-        });
 
         findViewById(R.id.Setting).setOnClickListener(view -> {
-            Intent gotToStd = new Intent(MainActivity.this,SettingsPage.class);
+            Intent gotToStd = new Intent(MainActivity.this, SettingsPage.class);
             startActivity(gotToStd);
         });
 
+
+
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -93,4 +84,31 @@ public class MainActivity extends AppCompatActivity {
         TextView welcome = findViewById(R.id.user);
         welcome.setText( instName+"’s Tasks");
     }
+    private void configureAmplify() {
+        configured=false;
+        try {
+            Amplify.addPlugin(new AWSDataStorePlugin()); // stores records locally
+            Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
+            Amplify.configure(getApplicationContext());
+
+            Log.i(TAG, "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e(TAG, "Could not initialize Amplify", error);
+        }}
+        private  List<Task> GetData(){
+            List<Task> foundExpense=new ArrayList<>();
+
+            Amplify.DataStore.query(
+                    Task.class,
+                    queryMatches -> {
+                        while (queryMatches.hasNext()) {
+                            Log.i(TAG, "Successful query, found tasks.");
+                            foundExpense.add(queryMatches.next());
+                        }
+                    },
+                    error -> {
+                        Log.i(TAG,  "Error retrieving expenses", error);
+                    });
+            return  foundExpense;
+        }
 }
