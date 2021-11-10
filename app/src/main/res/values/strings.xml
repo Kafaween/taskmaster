@@ -18,4 +18,6 @@
     <string name="title">Title</string>
     <string name="state">State</string>
     <string name="body">Body</string>
+
+    <string name="name">Name</string>
 </resources>

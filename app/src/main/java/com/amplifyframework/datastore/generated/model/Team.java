@@ -1,5 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
+import com.amplifyframework.core.model.annotations.HasMany;
 import com.amplifyframework.core.model.temporal.Temporal;
 
 import java.util.List;
@@ -16,22 +17,27 @@ import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-/** This is an auto generated class representing the Note type in your schema. */
+/** This is an auto generated class representing the Team type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Notes")
-public final class Note implements Model {
-  public static final QueryField ID = field("Note", "id");
-  public static final QueryField CONTENT = field("Note", "content");
+@ModelConfig(pluralName = "Teams")
+public final class Team implements Model {
+  public static final QueryField ID = field("Team", "id");
+  public static final QueryField NAME = field("Team", "name");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String content;
+  private final @ModelField(targetType="String", isRequired = true) String name;
+  private final @ModelField(targetType="Task") @HasMany(associatedWith = "teamID", type = Task.class) List<Task> tasks = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
       return id;
   }
   
-  public String getContent() {
-      return content;
+  public String getName() {
+      return name;
+  }
+  
+  public List<Task> getTasks() {
+      return tasks;
   }
   
   public Temporal.DateTime getCreatedAt() {
@@ -42,9 +48,9 @@ public final class Note implements Model {
       return updatedAt;
   }
   
-  private Note(String id, String content) {
+  private Team(String id, String name) {
     this.id = id;
-    this.content = content;
+    this.name = name;
   }
   
   @Override
@@ -54,11 +60,11 @@ public final class Note implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      Note note = (Note) obj;
-      return ObjectsCompat.equals(getId(), note.getId()) &&
-              ObjectsCompat.equals(getContent(), note.getContent()) &&
-              ObjectsCompat.equals(getCreatedAt(), note.getCreatedAt()) &&
-              ObjectsCompat.equals(getUpdatedAt(), note.getUpdatedAt());
+      Team team = (Team) obj;
+      return ObjectsCompat.equals(getId(), team.getId()) &&
+              ObjectsCompat.equals(getName(), team.getName()) &&
+              ObjectsCompat.equals(getCreatedAt(), team.getCreatedAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), team.getUpdatedAt());
       }
   }
   
@@ -66,7 +72,7 @@ public final class Note implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
-      .append(getContent())
+      .append(getName())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -76,16 +82,16 @@ public final class Note implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("Note {")
+      .append("Team {")
       .append("id=" + String.valueOf(getId()) + ", ")
-      .append("content=" + String.valueOf(getContent()) + ", ")
+      .append("name=" + String.valueOf(getName()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
   }
   
-  public static ContentStep builder() {
+  public static NameStep builder() {
       return new Builder();
   }
   
@@ -97,8 +103,8 @@ public final class Note implements Model {
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
    */
-  public static Note justId(String id) {
-    return new Note(
+  public static Team justId(String id) {
+    return new Team(
       id,
       null
     );
@@ -106,35 +112,35 @@ public final class Note implements Model {
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      content);
+      name);
   }
-  public interface ContentStep {
-    BuildStep content(String content);
+  public interface NameStep {
+    BuildStep name(String name);
   }
   
 
   public interface BuildStep {
-    Note build();
+    Team build();
     BuildStep id(String id);
   }
   
 
-  public static class Builder implements ContentStep, BuildStep {
+  public static class Builder implements NameStep, BuildStep {
     private String id;
-    private String content;
+    private String name;
     @Override
-     public Note build() {
+     public Team build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
-        return new Note(
+        return new Team(
           id,
-          content);
+          name);
     }
     
     @Override
-     public BuildStep content(String content) {
-        Objects.requireNonNull(content);
-        this.content = content;
+     public BuildStep name(String name) {
+        Objects.requireNonNull(name);
+        this.name = name;
         return this;
     }
     
@@ -150,14 +156,14 @@ public final class Note implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String content) {
+    private CopyOfBuilder(String id, String name) {
       super.id(id);
-      super.content(content);
+      super.name(name);
     }
     
     @Override
-     public CopyOfBuilder content(String content) {
-      return (CopyOfBuilder) super.content(content);
+     public CopyOfBuilder name(String name) {
+      return (CopyOfBuilder) super.name(name);
     }
   }
   
