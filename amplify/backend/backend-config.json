@@ -1,18 +1,18 @@
 {
   "api": {
-    "amplifyDatasource": {
+    "taskmaster2": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
         "authConfig": {
-          "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 40,
-              "description": "AKIAWSYHEQ7GOQYFUWCI"
+              "description": "AKIAWSYHEQ7GBRENYDWV"
             }
-          }
+          },
+          "additionalAuthenticationProviders": []
         }
       }
     }
