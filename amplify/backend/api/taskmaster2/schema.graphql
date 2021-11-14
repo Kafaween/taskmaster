@@ -11,3 +11,10 @@ title : String!
 body : String
 state : String
 }
+
+type User
+@model
+ {
+    id: ID!
+    name: String
+}
