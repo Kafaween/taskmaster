@@ -10,6 +10,7 @@ teamID: ID!
 title : String!
 body : String
 state : String
+fileName: String
 }
 
 type User

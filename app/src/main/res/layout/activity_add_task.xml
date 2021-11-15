@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".AddTask">
 
+
     <TextView
         android:id="@+id/text_addTask"
         android:layout_width="143dp"
@@ -18,8 +19,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.071" />
-
+        app:layout_constraintVertical_bias="0.049" />
 
     <TextView
         android:id="@+id/text_taskTitle"
@@ -71,19 +71,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_taskDescription" />
 
+
     <Button
         android:id="@+id/button_addTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="308dp"
         android:background="#90caf9"
         android:text="@string/add_task_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintHorizontal_bias="0.154"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_doSomething" />
-
-
 
     <EditText
         android:id="@+id/stateinput"
@@ -111,13 +110,16 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_doSomething" />
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/button_addTask"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.339"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stateinput">
+        app:layout_constraintTop_toBottomOf="@+id/stateinput"
+        app:layout_constraintVertical_bias="0.193">
 
         <RadioButton
             android:id="@+id/radioButton1"
@@ -137,5 +139,26 @@
             android:layout_height="wrap_content"
             android:text="Team 3" />
     </RadioGroup>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_files"
+        app:layout_constraintBottom_toTopOf="@+id/button_addTask"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.415"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
