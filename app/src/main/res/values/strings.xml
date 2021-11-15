@@ -24,4 +24,6 @@
     <string name="sign_in">Sign In</string>
     <string name="join_us">Join Us</string>
     <string name="upload_files">Upload Files</string>
+    <string name="task_image">task_image</string>
+    <string name="download_the_linked_file">download_the_linked_file</string>
 </resources>
