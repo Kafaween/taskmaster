@@ -25,10 +25,6 @@ public class EmailConfirmationActivity extends AppCompatActivity {
     }
 
     public void onConfirmButtonPressed(View view) {
-        // 1. Confirm the code
-        // 2. Re-login
-        // 3. Save the user details such names in Data-store
-
         EditText txtConfirmationCode = findViewById(R.id.txtConfirmationCode);
 
         Amplify.Auth.confirmSignUp(

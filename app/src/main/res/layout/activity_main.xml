@@ -70,29 +70,7 @@
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.679" />
-
-    <Button
-        android:id="@+id/signin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:text="@string/sign_in"
-        android:onClick="onClickLogin"
-        app:layout_constraintBottom_toTopOf="@+id/buttonMain_addTask"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Setting" />
-
-    <Button
-        android:id="@+id/signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/join_us"
-        android:onClick="onClickJoin"
-        app:layout_constraintBottom_toTopOf="@+id/buttonMain_allTask"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/signin"
-        app:layout_constraintTop_toBottomOf="@+id/Setting" />
+        app:layout_constraintVertical_bias="0.781" />
 
     <Button
         android:id="@+id/signout"

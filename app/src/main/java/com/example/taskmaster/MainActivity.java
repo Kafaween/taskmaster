@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         TextView welcome = findViewById(R.id.user);
         welcome.setText( instName+"’s Tasks");
 
-            configureAmplify();
+//            configureAmplify();
             creatTeams();
 
 
@@ -93,19 +93,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void onClickLogin(View view){
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-    public void onClickJoin(View view){
-        Intent intent = new Intent(this, JoinActivity.class);
-        startActivity(intent);
-    }
     public void onClickSignOut(View view){
         Amplify.Auth.signOut(
                 () -> Log.i("AuthQuickstart", "Signed out successfully"),
                 error -> Log.e("AuthQuickstart", error.toString())
         );
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
 
