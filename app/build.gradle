@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-  
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -32,7 +32,14 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-analytics'
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:29.0.0')
+    implementation 'com.google.firebase:firebase-messaging'
 
+    implementation 'com.amazonaws:aws-android-sdk-pinpoint:2.33.0'
+    implementation 'com.amazonaws:aws-android-sdk-mobile-client:2.35.0'
 
     implementation 'com.amplifyframework:aws-storage-s3:1.28.3'
     implementation 'com.amplifyframework:aws-auth-cognito:1.24.0'
@@ -58,3 +65,4 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
     implementation 'com.squareup.picasso:picasso:2.71828'
 }
+
