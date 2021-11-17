@@ -32,9 +32,12 @@ android {
 }
 
 dependencies {
+    implementation 'com.amplifyframework:aws-analytics-pinpoint:1.29.0'
+    implementation 'com.amplifyframework:aws-auth-cognito:1.29.0'
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
     implementation 'com.google.firebase:firebase-analytics'
-    // Import the BoM for the Firebase platform
+
+
     implementation platform('com.google.firebase:firebase-bom:29.0.0')
     implementation 'com.google.firebase:firebase-messaging'
 
