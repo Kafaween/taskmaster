@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.amplifyframework.analytics.AnalyticsEvent;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.squareup.picasso.Picasso;
@@ -68,5 +70,16 @@ public class TaskDetailPage extends AppCompatActivity {
             );
         }
 
+    }
+    private void recordEvent(){
+        AnalyticsEvent event = AnalyticsEvent.builder()
+                .name("Launch Task Details  activity")
+                .addProperty("Channel", "SMS")
+                .addProperty("Successful", true)
+                .addProperty("ProcessDuration", 792)
+                .addProperty("UserAge", 120.3)
+                .build();
+
+        Amplify.Analytics.recordEvent(event);
     }
 }

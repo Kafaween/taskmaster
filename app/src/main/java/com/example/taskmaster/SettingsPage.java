@@ -10,12 +10,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.amplifyframework.analytics.AnalyticsEvent;
+import com.amplifyframework.core.Amplify;
+
 public class SettingsPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_page);
+        recordEvent();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         findViewById(R.id.save_user).setOnClickListener(view -> {
@@ -42,6 +46,18 @@ public class SettingsPage extends AppCompatActivity {
             Intent gotToInst = new Intent(SettingsPage.this,MainActivity.class);
             startActivity(gotToInst);
         });
+    }
+
+    private void recordEvent(){
+        AnalyticsEvent event = AnalyticsEvent.builder()
+                .name("Launch Setting activity")
+                .addProperty("Channel", "SMS")
+                .addProperty("Successful", true)
+                .addProperty("ProcessDuration", 792)
+                .addProperty("UserAge", 120.3)
+                .build();
+
+        Amplify.Analytics.recordEvent(event);
     }
 
 }

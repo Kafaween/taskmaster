@@ -1,0 +1,22 @@
+{
+    "appName": "taskmaster2xXup1",
+    "roleName": "pinpointLambdaRole09cf2efc",
+    "cloudformationPolicyName": "cloudformationPolicy09cf2efc",
+    "cloudWatchPolicyName": "cloudWatchPolicy09cf2efc",
+    "pinpointPolicyName": "pinpointPolicy09cf2efc",
+    "authPolicyName": "pinpoint_amplify_09cf2efc",
+    "unauthPolicyName": "pinpoint_amplify_09cf2efc",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "appId": "0c3578701c1641c5b8d51e0e30585d27"
+}
