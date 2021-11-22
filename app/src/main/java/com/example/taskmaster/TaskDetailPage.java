@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.amplifyframework.analytics.AnalyticsEvent;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.squareup.picasso.Picasso;
 
 public class TaskDetailPage extends AppCompatActivity {
@@ -32,7 +33,11 @@ public class TaskDetailPage extends AppCompatActivity {
 
         welcome.setText("Welcome " + instName);
 
+        String lat=sharedPreferences.getString("latl","");
+        String lon=sharedPreferences.getString("lonl","");
+        if(lat!=null){
 
+        }
         TextView fileLinkDetail = findViewById(R.id.fileLinkDetail);
         fileLinkDetail.setOnClickListener(view -> {
             Intent i = new Intent(Intent.ACTION_VIEW);
@@ -70,6 +75,10 @@ public class TaskDetailPage extends AppCompatActivity {
             );
         }
 
+    }
+    public  void onClickViewLoc(View view){
+        Intent intent = new Intent(TaskDetailPage.this, Maps.class);
+        startActivity(intent);
     }
     private void recordEvent(){
         AnalyticsEvent event = AnalyticsEvent.builder()

@@ -11,6 +11,8 @@ title : String!
 body : String
 state : String
 fileName: String
+lat:String
+lon:String
 }
 
 type User

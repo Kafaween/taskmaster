@@ -5,11 +5,13 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.FileUtils;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -55,7 +57,7 @@ public class AddTask extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
-        recordEvent();
+//        recordEvent();
         image();
         ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -121,8 +123,12 @@ public class AddTask extends AppCompatActivity {
     }
 
     private void dataStore(String title, String body, String state,String id) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String lat=sharedPreferences.getString("lat","");
+        String lon=sharedPreferences.getString("lon","");
+        System.out.println("waaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+lat+lon);
         String fileNameIfThere = uploadedFileNames == null ? "" : uploadedFileNames;
-        Task task = Task.builder().teamId(id).title(title).body(body).state(state).fileName(fileNameIfThere).build();
+        Task task = Task.builder().teamId(id).title(title).body(body).state(state).fileName(fileNameIfThere).lat(lat).lon(lon).build();
 
 
         Amplify.API.mutate(ModelMutation.create(task),succuess-> {
@@ -182,16 +188,21 @@ public class AddTask extends AppCompatActivity {
     private void requestPermission(){
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
     }
-    private void recordEvent(){
-        AnalyticsEvent event = AnalyticsEvent.builder()
-                .name("Launch Add Task Activity")
-                .addProperty("Channel", "SMS")
-                .addProperty("Successful", true)
-                .addProperty("ProcessDuration", 792)
-                .addProperty("UserAge", 120.3)
-                .build();
+//    private void recordEvent(){
+//        AnalyticsEvent event = AnalyticsEvent.builder()
+//                .name("Launch Add Task Activity")
+//                .addProperty("Channel", "SMS")
+//                .addProperty("Successful", true)
+//                .addProperty("ProcessDuration", 792)
+//                .addProperty("UserAge", 120.3)
+//                .build();
+//
+//        Amplify.Analytics.recordEvent(event);
+//    }
 
-        Amplify.Analytics.recordEvent(event);
+    public  void onClickGetlocation(View view){
+        Intent intent = new Intent(AddTask.this, Maps.class);
+        startActivity(intent);
     }
     public void image(){
     Intent intent = getIntent();

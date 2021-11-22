@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recordEvent();
+//        recordEvent();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String instName = sharedPreferences.getString("UserName","user");
         String Team = sharedPreferences.getString("Team","noTeam");

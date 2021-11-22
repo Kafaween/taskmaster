@@ -56,6 +56,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                 editor.putString("TaskName",Task1);
                 String name=task.getFileName();
                 editor.putString("Filename",name);
+                editor.putString("latl",task.getLat());
+                editor.putString("lonl",task.getLon());
                 editor.apply();
                 Intent gotToStd = new Intent(context,TaskDetailPage.class);
                 context.startActivity(gotToStd);

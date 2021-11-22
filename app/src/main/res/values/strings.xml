@@ -27,4 +27,7 @@
     <string name="upload_files">Upload Files</string>
     <string name="task_image">task_image</string>
     <string name="download_the_linked_file">download_the_linked_file</string>
+    <string name="save_your_location">Save Your Location</string>
+    <string name="getlocation">GetLocation</string>
+    <string name="view_location">View Location</string>
 </resources>
