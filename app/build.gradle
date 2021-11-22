@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -32,6 +33,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation 'com.google.android.gms:play-services-maps:18.0.0'
     implementation 'com.amplifyframework:aws-analytics-pinpoint:1.29.0'
     implementation 'com.amplifyframework:aws-auth-cognito:1.29.0'
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
